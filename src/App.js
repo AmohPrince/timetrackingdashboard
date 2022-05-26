@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import Person from "./Components/Person";
+import Card from "./Components/Card";
+import { myData } from "./data";
 
 function App() {
+  const [time, setTime] = useState("daily");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Person setTime={setTime} />
+      <div className="left">
+        {myData.map((data) => (
+          <Card data={data} key={data.title} time={time} />
+        ))}
+      </div>
     </div>
   );
 }
